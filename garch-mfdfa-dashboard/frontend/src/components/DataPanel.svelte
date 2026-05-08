@@ -11,7 +11,7 @@
   import Icon from './Icon.svelte';
   import ParameterPanel from './ParameterPanel.svelte';
 
-  const API_URL = 'http://localhost:8000';
+  const API_URL = '/api';
 
   let fileInput;
   let fileName = '';
