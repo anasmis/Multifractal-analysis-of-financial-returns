@@ -8,7 +8,7 @@ FIGARCH** avec l'**Analyse multifractale par fluctuations détrendées
 Le dépôt regroupe deux briques :
 
 - `TimeSeries And Forecasting/` — pipeline scientifique en Python (récupération
-  Yahoo Finance, statistiques descriptives, MF-DFA, comparaison GARCHH).
+  Yahoo Finance, statistiques descriptives, MF-DFA, comparaison GARCH).
 - `garch-mfdfa-dashboard/` — atelier web interactif (FastAPI + Svelte +
   Plotly) qui réplique l'ensemble du pipeline et expose les résultats sous
   forme de tableaux de bord. 
