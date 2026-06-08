@@ -6,14 +6,14 @@ set -euo pipefail
 cd "$(dirname "$0")"
 
 echo "==> Building backend image..."
-docker-compose build backend
+docker compose build backend
 
 echo "==> Building frontend image (this is the heavy one)..."
-docker-compose build frontend
+docker compose build frontend
 
 echo "==> Starting containers..."
-docker-compose up -d
+docker compose up -d
 
 echo
 echo "Done. Open: http://<your-ec2-public-ip>"
-docker-compose ps
+docker compose ps
