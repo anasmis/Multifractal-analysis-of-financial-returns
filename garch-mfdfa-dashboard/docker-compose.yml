@@ -3,32 +3,21 @@ services:
     build:
       context: .
       dockerfile: backend/Dockerfile
-    ports:
-      - "8000:8000"
     environment:
       - PYTHONUNBUFFERED=1
-    volumes:
-      - ./backend:/app
-    command: uvicorn app:app --host 0.0.0.0 --port 8000 --reload
+    # No host port published: the backend is reached only through the
+    # frontend's nginx /api proxy over the internal Docker network.
+    # Uncomment to expose the API/docs directly for debugging:
+    # ports:
+    #   - "8000:8000"
+    restart: unless-stopped
 
   frontend:
     build:
       context: .
       dockerfile: frontend/Dockerfile
     ports:
-      - "5173:5173"
-    volumes:
-      - ./frontend/src:/app/src
-      - ./frontend/public:/app/public
-    environment:
-      # Proxy /api to the backend container (not 127.0.0.1, which is the frontend itself).
-      - VITE_PROXY_TARGET=http://backend:8000
-      # Public host the browser uses (EC2 public IP/DNS) so the HMR WebSocket connects.
-      # Set EC2_PUBLIC_HOST in a .env file next to this compose file, or your shell.
-      - VITE_HMR_HOST=${EC2_PUBLIC_HOST}
+      - "80:80"
     depends_on:
       - backend
-
-volumes:
-  backend_cache:
-  frontend_cache:
+    restart: unless-stopped

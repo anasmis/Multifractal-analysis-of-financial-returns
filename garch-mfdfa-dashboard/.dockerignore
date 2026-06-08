@@ -1,0 +1,11 @@
+# Never copy host-built dependencies/artifacts into the image — they are
+# rebuilt inside the container (and host node_modules may be Windows binaries).
+**/node_modules
+**/dist
+**/__pycache__
+**/.pytest_cache
+.git
+.gitignore
+*.md
+.env
+.env.*
